@@ -1,8 +1,7 @@
 #include QMK_KEYBOARD_H
-#include "oneshot.h"
 #include "keycodes.h"
-#include "layer_lock.h"
-
+// #include "layer_lock.h"
+// #include "oneshot.h"
 
 // Tap Dance declarations
 enum {
@@ -88,7 +87,7 @@ enum combo_events {
    DELETE_COMBO,
    TAB_COMBO,
    ENTER_COMBO,
-   ESC1_COMBO,
+//    ESC1_COMBO,
    BACKSPACE1_COMBO,
    DELETE1_COMBO,
    TAB1_COMBO,
@@ -96,9 +95,9 @@ enum combo_events {
    CUT_COMBO,
    COPY_COMBO,
    PASTE_COMBO,
-   CPWORD_COMBO,
-   MINS_COMBO,
-   UNDS_COMBO,
+//    CPWORD_COMBO,
+//    MINS_COMBO,
+//    UNDS_COMBO,
    COMBO_LENGTH
  };
 
@@ -115,7 +114,7 @@ enum combo_events {
  const uint16_t PROGMEM delete_combo[] = {KC_W, KC_F, COMBO_END};
  const uint16_t PROGMEM tab_combo[] = {KC_P, KC_B, COMBO_END};
  const uint16_t PROGMEM enter_combo[] = {HOME_S, HOME_T, COMBO_END};
- const uint16_t PROGMEM esc1_combo[] = {KC_Y,  T_QT, COMBO_END};
+//  const uint16_t PROGMEM esc1_combo[] = {KC_Y,  T_QT, COMBO_END};
  const uint16_t PROGMEM backspace1_combo[] = {KC_L, KC_U, COMBO_END};
  const uint16_t PROGMEM delete1_combo[] = {KC_U, KC_Y, COMBO_END};
  const uint16_t PROGMEM tab1_combo[] = {KC_J, KC_L, COMBO_END};
@@ -123,9 +122,9 @@ enum combo_events {
  const uint16_t PROGMEM cut_combo[] = {KC_X, KC_C, COMBO_END};
  const uint16_t PROGMEM copy_combo[] = {KC_C, KC_D, COMBO_END};
  const uint16_t PROGMEM paste_combo[] = {KC_D, KC_V, COMBO_END};
- const uint16_t PROGMEM cpword_combo[] = {HOME_A, HOME_O, COMBO_END};
- const uint16_t PROGMEM mins_combo[] = {KC_M, HOME_N, COMBO_END};
- const uint16_t PROGMEM unds_combo[] = {HOME_T, KC_G, COMBO_END};
+//  const uint16_t PROGMEM cpword_combo[] = {HOME_A, HOME_O, COMBO_END};
+//  const uint16_t PROGMEM mins_combo[] = {KC_M, HOME_N, COMBO_END};
+//  const uint16_t PROGMEM unds_combo[] = {HOME_T, KC_G, COMBO_END};
 
  combo_t key_combos[] = {
    [LCBR_COMBO] = COMBO(lcbr_combo, KC_LCBR),
@@ -139,7 +138,7 @@ enum combo_events {
    [DELETE_COMBO] = COMBO(delete_combo, KC_DEL),
    [TAB_COMBO] = COMBO(tab_combo, KC_TAB),
    [ENTER_COMBO] = COMBO(enter_combo, KC_ENTER),
-   [ESC1_COMBO] = COMBO(esc1_combo, KC_ESC),
+//    [ESC1_COMBO] = COMBO(esc1_combo, KC_ESC),
    [BACKSPACE1_COMBO] = COMBO(backspace1_combo, KC_BSPC),
    [DELETE1_COMBO] = COMBO(delete1_combo, KC_DEL),
    [TAB1_COMBO] = COMBO(tab1_combo, KC_TAB),
@@ -147,62 +146,62 @@ enum combo_events {
    [CUT_COMBO] = COMBO(cut_combo, KC_CUT),
    [COPY_COMBO] = COMBO(copy_combo, KC_COPY),
    [PASTE_COMBO] = COMBO(paste_combo, KC_PASTE),
-   [CPWORD_COMBO] = COMBO(cpword_combo, CAPS_WORD),
-   [MINS_COMBO] = COMBO(mins_combo, KC_MINS),
-   [UNDS_COMBO] = COMBO(unds_combo, KC_UNDS),
+//    [CPWORD_COMBO] = COMBO(cpword_combo, CAPS_WORD),
+//    [MINS_COMBO] = COMBO(mins_combo, KC_MINS),
+//    [UNDS_COMBO] = COMBO(unds_combo, KC_UNDS),
  };
 
 // caps word setup
-bool caps_word_press_user(uint16_t keycode) {
-    switch (keycode) {
-        // Keycodes that continue Caps Word, with shift applied.
-        case KC_A ... KC_Z:
-            add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
-            return true;
+// bool caps_word_press_user(uint16_t keycode) {
+//     switch (keycode) {
+//         // Keycodes that continue Caps Word, with shift applied.
+//         case KC_A ... KC_Z:
+//             add_weak_mods(MOD_BIT(KC_LSFT));  // Apply shift to next key.
+//             return true;
 
-        // Keycodes that continue Caps Word, without shifting.
-        case KC_1 ... KC_0:
-        case KC_BSPC:
-        case KC_MINS:
-        case KC_DEL:
-        case KC_UNDS:
-            return true;
+//         // Keycodes that continue Caps Word, without shifting.
+//         case KC_1 ... KC_0:
+//         case KC_BSPC:
+//         case KC_MINS:
+//         case KC_DEL:
+//         case KC_UNDS:
+//             return true;
 
-        default:
-            return false;  // Deactivate Caps Word.
-    }
-}
+//         default:
+//             return false;  // Deactivate Caps Word.
+//     }
+// }
 
-bool is_oneshot_cancel_key(uint16_t keycode) {
-    switch (keycode) {
-    case NAV:
-    case NUM:
-        return true;
-    default:
-        return false;
-    }
-}
+// bool is_oneshot_cancel_key(uint16_t keycode) {
+//     switch (keycode) {
+//     case NAV:
+//     case NUM:
+//         return true;
+//     default:
+//         return false;
+//     }
+// }
 
-bool is_oneshot_ignored_key(uint16_t keycode) {
-    switch (keycode) {
-    case NAV:
-    case NUM:
-    case OS_SHFT:
-    case OS_CTRL:
-    case OS_ALT:
-    case OS_CMD:
-        return true;
-    default:
-        return false;
-    }
-}
+// bool is_oneshot_ignored_key(uint16_t keycode) {
+//     switch (keycode) {
+//     case NAV:
+//     case NUM:
+//     case OS_SHFT:
+//     case OS_CTRL:
+//     case OS_ALT:
+//     case OS_CMD:
+//         return true;
+//     default:
+//         return false;
+//     }
+// }
 
-bool sw_app_active = false;
+// bool sw_app_active = false;
 
-oneshot_state os_shft_state = os_up_unqueued;
-oneshot_state os_ctrl_state = os_up_unqueued;
-oneshot_state os_alt_state = os_up_unqueued;
-oneshot_state os_cmd_state = os_up_unqueued;
+// oneshot_state os_shft_state = os_up_unqueued;
+// oneshot_state os_ctrl_state = os_up_unqueued;
+// oneshot_state os_alt_state = os_up_unqueued;
+// oneshot_state os_cmd_state = os_up_unqueued;
 
 // bool process_record_user(uint16_t keycode, keyrecord_t* record) {
 
