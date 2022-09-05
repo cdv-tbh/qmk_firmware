@@ -1,0 +1,3 @@
+☒ C file does not exist!
+usage: qmk c2json [-h] -km KEYMAP -kb KEYBOARD [-q] [-o OUTPUT] [--no-cpp]
+                  filename
